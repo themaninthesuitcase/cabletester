@@ -7,8 +7,8 @@ Sheet 1 1
 Title "Simple Eurorack Cable Tester"
 Date ""
 Rev ""
-Comp ""
-Comment1 ""
+Comp "tomarus / https://github.com/tomarus/cabletester"
+Comment1 "forked to https://github.com/holmesrichards/cabletester with slight mods"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -157,17 +157,6 @@ Wire Wire Line
 Connection ~ 5900 2950
 Connection ~ 5900 3050
 $Comp
-L MCU_Module:Arduino_Nano_v3.x A1
-U 1 1 5DF0BB02
-P 2300 4400
-F 0 "A1" H 2300 3100 50  0000 C CNN
-F 1 "Arduino_Nano_v3.x" H 2300 3000 50  0000 C CNN
-F 2 "ao_tht:Arduino_Nano" H 2450 3450 50  0001 L CNN
-F 3 "http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf" H 2300 3400 50  0001 C CNN
-	1    2300 4400
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR011
 U 1 1 5DF116AE
 P 2300 5400
@@ -249,18 +238,6 @@ Wire Wire Line
 	3850 4400 3850 4950
 Wire Wire Line
 	3850 4950 4250 4950
-Text Label 5250 3950 0    50   ~ 0
-S0
-Text Label 5250 3850 0    50   ~ 0
-S1
-Text Label 5250 3750 0    50   ~ 0
-S2
-Text Label 1800 4100 2    50   ~ 0
-S0
-Text Label 1800 4200 2    50   ~ 0
-S1
-Text Label 1800 4300 2    50   ~ 0
-S2
 NoConn ~ 1800 4400
 NoConn ~ 1800 4500
 NoConn ~ 1800 4600
@@ -591,7 +568,6 @@ F 3 "" H 8550 3150 50  0001 C CNN
 	1    8550 3150
 	1    0    0    -1  
 $EndComp
-NoConn ~ 1800 4000
 NoConn ~ 1800 3900
 NoConn ~ 1800 3800
 $Comp
@@ -617,7 +593,7 @@ F 3 "" H 2250 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 8000 5400 0    50   ~ 0
-schematic connections do not \nmatch code but ease of wiring.\nconnect like this:
+Order of connections between 4051\nand IDC connector is different than\nin original code. Use modified code.
 Wire Wire Line
 	5300 4950 5300 5600
 Wire Wire Line
@@ -667,8 +643,6 @@ F 3 "" H 4250 5700 50  0001 C CNN
 	1    4250 5700
 	1    0    0    -1  
 $EndComp
-Text Notes 8000 6150 0    50   ~ 0
-conn 1 = 4051 pin  1 = ch 4 (-12v)\nconn 2 = 4051 pin  2 = ch 6 (gnd1)\nconn 3 = 4051 pin 15 = ch 2 (gnd2)\nconn 4 = 4051 pin  4 = ch 7 (gnd3)\nconn 5 = 4051 pin  5 = ch 5 (+12v)\nconn 6 = 4051 pin 14 = ch 1 (+5v)\nconn 7 = 4051 pin 13 = ch 0 (gate)\nconn 8 = 4051 pin 12 = ch 3 (cv)
 Connection ~ 6450 2450
 Wire Wire Line
 	6450 2450 6650 2450
@@ -774,4 +748,28 @@ Connection ~ 2300 5400
 Wire Wire Line
 	4750 3450 4650 3450
 Connection ~ 4650 3450
+NoConn ~ 1800 4000
+$Comp
+L MCU_Module:Arduino_Nano_v3.x A1
+U 1 1 5DF0BB02
+P 2300 4400
+F 0 "A1" H 2300 3100 50  0000 C CNN
+F 1 "Arduino_Nano_v3.x" H 2300 3000 50  0000 C CNN
+F 2 "ao_tht:Arduino_Nano" H 2450 3450 50  0001 L CNN
+F 3 "http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf" H 2300 3400 50  0001 C CNN
+	1    2300 4400
+	1    0    0    -1  
+$EndComp
+Text GLabel 1800 4100 0    50   Output ~ 0
+S0
+Text GLabel 1800 4200 0    50   Output ~ 0
+S1
+Text GLabel 1800 4300 0    50   Output ~ 0
+S2
+Text GLabel 5250 3950 2    50   Input ~ 0
+S0
+Text GLabel 5250 3850 2    50   Input ~ 0
+S1
+Text GLabel 5250 3750 2    50   Input ~ 0
+S2
 $EndSCHEMATC
