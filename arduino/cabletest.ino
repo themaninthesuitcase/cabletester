@@ -3,9 +3,9 @@
 #define OLED_ADDR 0x3C
 Adafruit_SSD1306 display(128, 64);
 
-#define PIN_4051_S0 5
+#define PIN_4051_S0 3
 #define PIN_4051_S1 4
-#define PIN_4051_S2 3
+#define PIN_4051_S2 5
 #define PIN_4051_A A0
 
 // set DEBUG to true to display raw ADC values instead of just "OK"
@@ -18,15 +18,16 @@ const char *labels[] = {
 // must match label order
 // see read_values()
 // this is really hacky and ugly and depends on your wiring
+// Index is MUX pin, value is IDC pin (0-7)
 const int order[] = {
-	6, // cv
+	7, // cv
+	6, // gate
 	5, // +5v
-	2, // gnd2
-	7, // gate
-	0, // -12v
 	4, // +12v
+	3, // gnd3
+	2, // gnd2
 	1, // gnd1
-	3  // gnd3
+	0  // -12v
 };
 
 // allow some fluctuation on our ADC
@@ -38,10 +39,12 @@ const int margin = 20;
 const int expect[] = {
 	746, 544, 395, 286, 204, 130, 80, 35};
 
+const int open_threshold = 15;
+
 int cable_status = 0;
 int prev_status = -1;
 const char *statuses[] = {
-	"OK, Boomer",
+	"CABLE OK",
 	"NO CABLE",
 	"SHORTED",
 	"BAD CABLE"};
@@ -75,6 +78,7 @@ void setup()
 	vdotline(63);
 	vdotline(95);
 	display.display();
+
 }
 
 void loop()
@@ -86,7 +90,7 @@ void loop()
 	for (int i = 0; i < 8; i++)
 	{
 		draw_value(i);
-	}
+  }
 	draw_status();
 	display.display();
 }
@@ -125,7 +129,7 @@ void check_status()
 		int prev = i == 0 ? 7 : i - 1;
 		int next = i == 7 ? 0 : i + 1;
 
-		if (values[i] < 5)
+		if (values[i] < open_threshold)
 		{
 			nc++;
 		}
@@ -160,6 +164,7 @@ void check_status()
 		// otherwise a bad cable
 		cable_status = 3;
 	}
+
 }
 
 // draw_status renders the global status on top of the screen
@@ -208,7 +213,7 @@ void draw_value(const int n)
 
 	int prev = n == 0 ? 7 : n - 1;
 	int next = n == 7 ? 0 : n + 1;
-	if (inmargin(values[n], values[prev]) || inmargin(values[n], values[next]))
+	if (values[n] >= open_threshold && (inmargin(values[n], values[prev]) || inmargin(values[n], values[next])))
 	{
 		// If our next or previous value is the same (+/- margin)
 		// there is probably a short circuit.
@@ -229,7 +234,7 @@ void draw_value(const int n)
 			display.print("OK");
 		}
 	}
-	else
+	else if (values[n] >= open_threshold)
 	{
 		// Display raw ADC value if out of limits.
 		align_value(x + 4, y, v);

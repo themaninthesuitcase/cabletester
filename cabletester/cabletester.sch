@@ -736,13 +736,13 @@ $EndComp
 Wire Wire Line
 	3350 5500 3650 5500
 Text GLabel 3350 5700 2    50   Input ~ 0
-A4
+SDA
 Text GLabel 3350 5600 2    50   Input ~ 0
-A5
+SCL
 Text GLabel 2800 4800 2    50   Output ~ 0
-A4
+SDA
 Text GLabel 2800 4900 2    50   Output ~ 0
-A5
+SCL
 Wire Wire Line
 	2400 5400 2300 5400
 Connection ~ 2300 5400
@@ -785,9 +785,9 @@ F 3 "" H 3800 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 3350 6600 2    50   Input ~ 0
-A4
+SDA
 Text GLabel 3350 6500 2    50   Input ~ 0
-A5
+SCL
 $Comp
 L Connector_Generic:Conn_01x04 J6
 U 1 1 5F324527
