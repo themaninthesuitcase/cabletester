@@ -772,4 +772,47 @@ Text GLabel 5250 3850 2    50   Input ~ 0
 S1
 Text GLabel 5250 3750 2    50   Input ~ 0
 S2
+$Comp
+L power:GND #PWR06
+U 1 1 5F324521
+P 3800 6300
+F 0 "#PWR06" H 3800 6050 50  0001 C CNN
+F 1 "GND" H 3805 6127 50  0000 C CNN
+F 2 "" H 3800 6300 50  0001 C CNN
+F 3 "" H 3800 6300 50  0001 C CNN
+	1    3800 6300
+	1    0    0    -1  
+$EndComp
+Text GLabel 3350 6600 2    50   Input ~ 0
+A4
+Text GLabel 3350 6500 2    50   Input ~ 0
+A5
+$Comp
+L Connector_Generic:Conn_01x04 J6
+U 1 1 5F324527
+P 3150 6500
+F 0 "J6" H 3100 6100 50  0000 L CNN
+F 1 "OLED" H 3050 6200 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 3150 6500 50  0001 C CNN
+F 3 "~" H 3150 6500 50  0001 C CNN
+	1    3150 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+5V #PWR012
+U 1 1 5F32451B
+P 3650 6400
+F 0 "#PWR012" H 3650 6250 50  0001 C CNN
+F 1 "+5V" H 3665 6573 50  0000 C CNN
+F 2 "" H 3650 6400 50  0001 C CNN
+F 3 "" H 3650 6400 50  0001 C CNN
+	1    3650 6400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3350 6400 3650 6400
+Wire Wire Line
+	3350 6300 3800 6300
+Text Notes 2750 6000 0    50   ~ 0
+Fit one of J5,  J6 depending\non OLED pinout
 $EndSCHEMATC
