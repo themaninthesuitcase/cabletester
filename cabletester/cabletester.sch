@@ -726,9 +726,10 @@ L Connector_Generic:Conn_01x04 J5
 U 1 1 5DF0E6E4
 P 3150 5600
 F 0 "J5" H 3100 5200 50  0000 L CNN
-F 1 "OLED" H 3050 5300 50  0000 L CNN
+F 1 "4 pin header" H 3050 5300 50  0000 L CNN
 F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 3150 5600 50  0001 C CNN
 F 3 "~" H 3150 5600 50  0001 C CNN
+F 4 "OLED" H 3350 5550 50  0000 C CNN "Field4"
 	1    3150 5600
 	-1   0    0    1   
 $EndComp
@@ -792,9 +793,10 @@ L Connector_Generic:Conn_01x04 J6
 U 1 1 5F324527
 P 3150 6500
 F 0 "J6" H 3100 6100 50  0000 L CNN
-F 1 "OLED" H 3050 6200 50  0000 L CNN
+F 1 "4 pin header" H 3050 6200 50  0000 L CNN
 F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 3150 6500 50  0001 C CNN
 F 3 "~" H 3150 6500 50  0001 C CNN
+F 4 "OLED" H 3350 6450 50  0000 C CNN "Field4"
 	1    3150 6500
 	-1   0    0    1   
 $EndComp
