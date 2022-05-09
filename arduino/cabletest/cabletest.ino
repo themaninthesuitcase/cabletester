@@ -54,22 +54,6 @@ int newvalues[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("beg setup");
-
-  display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR); 
-  display.clearDisplay();
-
-  display.setTextColor(WHITE, BLACK);
-  display.setTextSize(1);
-  display.setCursor (0, 32);
-  display.println("clear");
-  display.display();
-	
-  Serial.println("end setup");
-}
-void setupx()
-{
 	pinMode(PIN_4051_S0, OUTPUT);
 	pinMode(PIN_4051_S1, OUTPUT);
 	pinMode(PIN_4051_S2, OUTPUT);
@@ -94,21 +78,20 @@ void setupx()
 	vdotline(63);
 	vdotline(95);
 	display.display();
-
 }
 
 void loop()
 {
-  /* 	read_values(); */
-  /* 	check_status(); */
+	read_values();
+	check_status();
 
-  /* 	display.setTextSize(1); */
-  /* 	for (int i = 0; i < 8; i++) */
-  /* 	{ */
-  /* 		draw_value(i); */
-  /* } */
-  /* 	draw_status(); */
-  /* 	display.display(); */
+	display.setTextSize(1);
+	for (int i = 0; i < 8; i++)
+	{
+		draw_value(i);
+	}
+	draw_status();
+	display.display();
 }
 
 void hdotline(int y)
@@ -180,7 +163,6 @@ void check_status()
 		// otherwise a bad cable
 		cable_status = 3;
 	}
-
 }
 
 // draw_status renders the global status on top of the screen
